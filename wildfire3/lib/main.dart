@@ -1,113 +1,369 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_indicator/page_indicator.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(WildFire());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class WildFire extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/OnBoarding': (context) => OnBoarding(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key ? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Timer(Duration(seconds: 3), route);
+    super.initState();
+  }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  route() => Navigator.pushNamed(context, '/OnBoarding');
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xffDA0000),
+                Color.fromRGBO(218, 0, 0, 1),
+                Color.fromRGBO(255, 230, 0, 1),
+              ],
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/Logo3.png'),
+                Text(
+                  'Spark',
+                  style: GoogleFonts.openSans(textStyle: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 34,
+                      fontWeight: FontWeight.w700),
+                  ),),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Spread like wildfire!',
+                  style: GoogleFonts.openSans(textStyle: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  ),),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OnBoarding extends StatefulWidget {
+  const OnBoarding({Key ? key}) : super(key: key);
+
+  @override
+  _OnBoardingState createState() => _OnBoardingState();
+}
+
+class _OnBoardingState extends State<OnBoarding> {
+  late PageController controller;
+  int currentIndex = 0;
+
+  @override
+  void initState() {
+    controller = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Stack(children: [
+        PageView(
+          controller: controller,
+          onPageChanged: onchanged,
+          children: [
+            Container(
+              child: Center(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: Image.asset('assets/OnBoard.png'),
+                    ),
+                    Container(
+                      child: Container(
+                        height: 40,
+                        child: PageIndicatorContainer(
+                          child: PageView(
+                            children: <Widget>[],
+                            controller: controller,
+                          ),
+                          align: IndicatorAlign.center,
+                          length: 3,
+                          indicatorSpace: 15,
+                          padding: const EdgeInsets.all(10),
+                          shape: IndicatorShape.circle(size: 10),
+                          indicatorColor: Color.fromRGBO(196, 196, 196, 1),
+                          indicatorSelectorColor: Colors.black87,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Text(
+                        'Tell us when you see a wildfire.',
+                        style: GoogleFonts.openSans(
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            height: 1,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 315,
+                      child: Text(
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing malesuada tellus massa risus euismod mauris. Urna leo.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.openSans(
+                          textStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Next',
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color.fromRGBO(255, 139, 0, 1),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 70,
+                              vertical: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Container(
+              child: Center(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: Image.asset('assets/Board2.png'),
+                    ),
+                    Container(
+                      child: Container(
+                        height: 40,
+                        child: PageIndicatorContainer(
+                          child: PageView(
+                            children: <Widget>[],
+                            controller: controller,
+                          ),
+                          align: IndicatorAlign.center,
+                          length: 3,
+                          indicatorSpace: 15,
+                          padding: const EdgeInsets.all(10),
+                          shape: IndicatorShape.circle(size: 10),
+                          indicatorColor: Color.fromRGBO(196, 196, 196, 1),
+                          indicatorSelectorColor: Colors.black87,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Text(
+                        'Elit vulputate vel dui faucibus magnis.',
+                        style: GoogleFonts.openSans(
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            height: 1,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 315,
+                      child: Text(
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt habitasse id ac netus dictum volutpat tellus. Maecenas aliquam metus. ',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.openSans(
+                          textStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Next',
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color.fromRGBO(255, 139, 0, 1),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 70,
+                              vertical: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: Image.asset('assets/Board3.png'),
+                    ),
+                    Container(
+                      child: Container(
+                        height: 40,
+                        child: PageIndicatorContainer(
+                          child: PageView(
+                            children: <Widget>[],
+                            controller: controller,
+                          ),
+                          align: IndicatorAlign.center,
+                          length: 3,
+                          indicatorSpace: 15,
+                          padding: const EdgeInsets.all(10),
+                          shape: IndicatorShape.circle(size: 10),
+                          indicatorColor: Color.fromRGBO(196, 196, 196, 1),
+                          indicatorSelectorColor: Colors.black87,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Text(
+                        'Magnis sem orci pulvinar feugiat ..',
+                        style: GoogleFonts.openSans(
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            height: 1,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 315,
+                      child: Text(
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eros, dignissim ornare pulvinar eget lectus. Nulla massa pulvinar elit id amet eget egestas suscipit sapien. Nibh tempor.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.openSans(
+                          textStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Get Started',
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color.fromRGBO(255, 139, 0, 1),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 70,
+                              vertical: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ]),
     );
+  }
+
+  onchanged(int index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 }
