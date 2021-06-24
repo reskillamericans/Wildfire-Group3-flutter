@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wildfire3/screens/home.dart';
+import 'package:wildfire3/screens/login.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -189,7 +190,14 @@ class _SignUpState extends State<SignUp> {
                       return Colors.black;
                     }),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
+                  },
                   child: Text("Login"),
                 ),
               ],
