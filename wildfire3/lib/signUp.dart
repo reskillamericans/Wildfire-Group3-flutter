@@ -130,7 +130,7 @@ class _SignUpState extends State<SignUp> {
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
                 child: Text(
-                  'Sign In',
+                  'Sign Up',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
