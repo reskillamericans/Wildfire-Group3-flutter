@@ -23,6 +23,15 @@ class _SignUpState extends State<SignUp> {
     var _margin2 = EdgeInsets.only(top: 30);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            icon: Icon(Icons.menu, color: Colors.black), onPressed: () {}),
+        title: Text(
+          "Sign Up",
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
         child: ListView(
@@ -194,7 +203,7 @@ class _SignUpState extends State<SignUp> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => Login(),
                       ),
                     );
                   },
