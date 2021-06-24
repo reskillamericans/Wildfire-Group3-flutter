@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wildfire3/screens/home.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -135,6 +136,12 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () {
                   print(_nameController.text);
                   print(_passwordController.text);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.yellow.shade800,
