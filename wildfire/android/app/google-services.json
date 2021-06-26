@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "923874642375",
+    "project_id": "wildfire3-a18ac",
+    "storage_bucket": "wildfire3-a18ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923874642375:android:8c6438d374ccd78837f1e2",
+        "android_client_info": {
+          "package_name": "com.reskillamericans.wildfire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923874642375-b3psvkm125doeph9i3e8797qg7pl0f9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDIZEacyFld6lRr_zIusUKMO_OsCy3-Sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923874642375-b3psvkm125doeph9i3e8797qg7pl0f9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923874642375:android:4db4b68e0291ff2237f1e2",
+        "android_client_info": {
+          "package_name": "com.reskillamericans.wildfire3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923874642375-b3psvkm125doeph9i3e8797qg7pl0f9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDIZEacyFld6lRr_zIusUKMO_OsCy3-Sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923874642375-b3psvkm125doeph9i3e8797qg7pl0f9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
