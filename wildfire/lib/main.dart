@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:wildfire/Screens/OnBoarding.dart';
-import 'package:wildfire/Screens/Splash.dart';
+import 'package:wildfire/Screens/intro/on_boarding.dart';
+import 'package:wildfire/Screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
