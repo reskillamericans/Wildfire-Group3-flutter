@@ -7,7 +7,7 @@ import 'package:wildfire/Screens/Splash.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(WildFire());
 }
 
 class MyApp extends StatelessWidget {
