@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wildfire/Screens/model.dart';
+import 'package:wildfire/model/model.dart';
 
 
 
