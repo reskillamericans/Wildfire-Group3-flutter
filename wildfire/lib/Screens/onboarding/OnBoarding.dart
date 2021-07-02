@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wildfire/Screens/model.dart';
-import 'package:wildfire/Screens/template.dart';
+import 'package:wildfire/Screens/onboarding/model.dart';
+import 'package:wildfire/Screens/onboarding/template.dart';
 
 
 class OnBoarding extends StatefulWidget {

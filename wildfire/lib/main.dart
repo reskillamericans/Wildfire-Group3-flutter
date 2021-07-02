@@ -1,27 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:wildfire/Screens/OnBoarding.dart';
+import 'package:wildfire/Screens/Dashboard/Navigation.dart';
+import 'package:wildfire/Screens/Dashboard/dashcontainers.dart';
+import 'package:wildfire/Screens/onboarding/OnBoarding.dart';
 import 'package:wildfire/Screens/Splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(WildFire());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -73,6 +61,8 @@ class WildFire extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(),
         '/OnBoarding': (context) => OnBoarding(),
+        '/Dashboard': (context) => Dashboard(),
+        '/Holder': (context) => Holder(),
       },
     );
   }
