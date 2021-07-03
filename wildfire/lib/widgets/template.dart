@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD:wildfire/lib/Screens/onboarding/template.dart
-import 'package:wildfire/Screens/onboarding/model.dart';
-=======
+
+
+
 import 'package:wildfire/model/model.dart';
->>>>>>> 2af4eeba3fe3ce65eee1941d95f8789dce9aaefd:wildfire/lib/widgets/template.dart
+
 
 
 

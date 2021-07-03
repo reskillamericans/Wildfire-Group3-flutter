@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD:wildfire/lib/Screens/onboarding/OnBoarding.dart
-import 'package:wildfire/Screens/onboarding/model.dart';
-import 'package:wildfire/Screens/onboarding/template.dart';
-=======
+
 import 'package:wildfire/model/model.dart';
 import 'package:wildfire/widgets/template.dart';
->>>>>>> 2af4eeba3fe3ce65eee1941d95f8789dce9aaefd:wildfire/lib/Screens/intro/on_boarding.dart
+
 
 
 class OnBoarding extends StatefulWidget {
@@ -58,7 +55,9 @@ class _OnBoardingState extends State<OnBoarding> {
 
             child: ElevatedButton(
               onPressed: () {
-                if (currentIndex == slide.length - 1) {}
+                if (currentIndex == slide.length - 1) {
+                  Navigator.pushNamed(context, '/Dashboard');
+                }
                 controller.nextPage(
                     duration: Duration(microseconds: 100),
                     curve: Curves.bounceIn);
