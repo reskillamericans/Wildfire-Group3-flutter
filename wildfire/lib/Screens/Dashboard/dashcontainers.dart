@@ -49,26 +49,7 @@ class _DashboardState extends State<Dashboard> {
           child: Material(
             child: ListView(
               children: <Widget>[
-                const SizedBox(height: 17),
-                buildMenuItem(
-                  text: "Home",
-                  onClicked: () => selectedItem(context, 0),
-                ),
-                const SizedBox(height: 17),
-                buildMenuItem(
-                  text: "Updates",
-                  onClicked: () => selectedItem(context, 1),
-                ),
-                const SizedBox(height: 17),
-                buildMenuItem(
-                  text: "I\'m Alive",
-                  onClicked: () => selectedItem(context, 2),
-                ),
-                const SizedBox(height: 17),
-                buildMenuItem(
-                  text: "Search",
-                  onClicked: () => selectedItem(context, 3),
-                ),
+
               ],
             ),
           ),
@@ -309,28 +290,3 @@ Widget buildMenuItem({
   );
 }
 
-void selectedItem(BuildContext context, int index) {
-  Navigator.of(context).pop();
-  switch (index) {
-    case 0:
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Holder(),
-      ));
-      break;
-    case 1:
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Holder(),
-      ));
-      break;
-    case 2:
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Holder(),
-      ));
-      break;
-    case 3:
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Holder(),
-      ));
-      break;
-  }
-}
