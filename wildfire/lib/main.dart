@@ -1,27 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wildfire/Screens/Dashboard/blankpage.dart';
+import 'package:wildfire/Screens/Dashboard/dashcontainers.dart';
 import 'package:wildfire/Screens/intro/on_boarding.dart';
 import 'package:wildfire/Screens/splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(WildFire());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -67,13 +58,18 @@ class _MyHomePageState extends State<MyHomePage> {
 class WildFire extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => SplashScreen(),
-        '/OnBoarding': (context) => OnBoarding(),
-      },
+    return ScreenUtilInit(
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => SplashScreen(),
+          '/OnBoarding': (context) => OnBoarding(),
+          '/Dashboard': (context) => Dashboard(),
+          '/Holder': (context) => Holder(),
+        },
+      ),
+      designSize: const Size(375, 667),
     );
   }
 }
