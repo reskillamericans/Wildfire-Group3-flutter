@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-abstract class Wildfire {
+class Wildfire {
   late String _name, _phoneNumber, _location, _detail, _time;
 
   CollectionReference fireUpdate =
@@ -75,6 +75,7 @@ abstract class Wildfire {
   String get detail => _detail;
 
   String get time => _time;
+  
 }
 
 class Report extends Wildfire {
@@ -94,29 +95,29 @@ Query<Map<String, dynamic>> query =
     FirebaseFirestore.instance.collection("fire-updates");
 final Stream<QuerySnapshot<Map<String, dynamic>>> snapshots = query.snapshots();
 
-void createData() {
-  FirebaseFirestore.instance.collection('fire-updates').doc().set({
-    'name': 'John Doe',
-    'phone-number': '2060000000',
-    'location': 'Northwest',
-    'detail': 'Raging wildfire off I-90',
-    'time': '2:06PM'
-  });
-  FirebaseFirestore.instance.collection('fire-updates').doc().set({
-    'name': 'Jane Doe',
-    'phone-number': '2130000000',
-    'location': 'California',
-    'detail': 'Wildfire caused by campfire.',
-    'time': '2:13PM'
-  });
-}
+// void createData() {
+//   FirebaseFirestore.instance.collection('fire-updates').doc().set({
+//     'name': 'John Doe',
+//     'phone-number': '2060000000',
+//     'location': 'Northwest',
+//     'detail': 'Raging wildfire off I-90',
+//     'time': '2:06PM'
+//   });
+//   FirebaseFirestore.instance.collection('fire-updates').doc().set({
+//     'name': 'Jane Doe',
+//     'phone-number': '2130000000',
+//     'location': 'California',
+//     'detail': 'Wildfire caused by campfire.',
+//     'time': '2:13PM'
+//   });
+// }
 
-void updateData() {
-  FirebaseFirestore.instance.collection('fire-updates').doc().update({
-    'detail': 'Raging wildfire off I-90. Notifiied authorities. DNR responded.'
-  });
-}
+// void updateData() {
+//   FirebaseFirestore.instance.collection('fire-updates').doc().update({
+//     'detail': 'Raging wildfire off I-90. Notifiied authorities. DNR responded.'
+//   });
+// }
 
-void deleteData() {
-  FirebaseFirestore.instance.collection('fire-updates').doc().delete();
-}
+// void deleteData() {
+//   FirebaseFirestore.instance.collection('fire-updates').doc().delete();
+// }
