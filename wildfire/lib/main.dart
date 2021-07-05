@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wildfire/Screens/Dashboard/blankpage.dart';
 import 'package:wildfire/Screens/Dashboard/dashcontainers.dart';
-
-
-
 import 'package:wildfire/Screens/intro/on_boarding.dart';
 import 'package:wildfire/Screens/splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 void main() async {
@@ -60,15 +58,18 @@ class _MyHomePageState extends State<MyHomePage> {
 class WildFire extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => SplashScreen(),
-        '/OnBoarding': (context) => OnBoarding(),
-        '/Dashboard': (context) => Dashboard(),
-        '/Holder': (context) => Holder(),
-      },
+    return ScreenUtilInit(
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => SplashScreen(),
+          '/OnBoarding': (context) => OnBoarding(),
+          '/Dashboard': (context) => Dashboard(),
+          '/Holder': (context) => Holder(),
+        },
+      ),
+      designSize: const Size(375, 667),
     );
   }
 }
