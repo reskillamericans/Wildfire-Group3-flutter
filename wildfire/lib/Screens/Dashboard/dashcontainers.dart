@@ -48,9 +48,7 @@ class _DashboardState extends State<Dashboard> {
         drawer: Drawer(
           child: Material(
             child: ListView(
-              children: <Widget>[
-
-              ],
+              children: <Widget>[],
             ),
           ),
         ),
@@ -63,7 +61,9 @@ class _DashboardState extends State<Dashboard> {
                   Container(
                     child: Column(
                       children: [
-                        SizedBox(height: 16.h,),
+                        SizedBox(
+                          height: 16.h,
+                        ),
                         SizedBox(
                           width: 343.w,
                           height: 21.h,
@@ -189,7 +189,7 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         padding: EdgeInsets.symmetric(
                           horizontal: 16.w,
-                         ),
+                        ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -265,7 +265,7 @@ class _DashboardState extends State<Dashboard> {
           ],
           onTap: (index) {
             setState(() {
-              _currentIndex = index;
+              _currentIndex = _navigation.length;
             });
           },
         ),
@@ -279,7 +279,7 @@ Widget buildMenuItem({
   required String text,
   VoidCallback? onClicked,
 }) {
-  final color = Colors.black;
+  // final color = Colors.black;
 
   return ListTile(
     title: Text(
@@ -289,4 +289,3 @@ Widget buildMenuItem({
     onTap: onClicked,
   );
 }
-
