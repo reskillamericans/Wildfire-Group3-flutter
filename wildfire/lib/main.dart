@@ -1,25 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wildfire/Screens/Dashboard/blankpage.dart';
+import 'package:wildfire/Screens/Dashboard/dashcontainers.dart';
+import 'package:wildfire/Screens/intro/on_boarding.dart';
+import 'package:wildfire/Screens/splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  runApp(WildFire());
 }
 
 class MyHomePage extends StatefulWidget {
@@ -60,64 +52,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Wildfire {
-  late String _name, _phoneNumber, _location, _detail, _time;
-
-  CollectionReference fireUpdate =
-      FirebaseFirestore.instance.collection('fire-updates');
-
-  String get name => _name;
-
-  String get phoneNumber => _phoneNumber;
-
-  String get location => _location;
-
-  String get detail => _detail;
-
-  String get time => _time;
-  
-}
-
-class Report extends Wildfire {
-  
-  
-  void readData() {
-    FirebaseFirestore.instance.collection("fire-updates").doc().get();
-    print("$name ['name']}");
-    print("$phoneNumber ['phone-number']}");
-    print("$location ['location']}");
-    print("$detail ['detail']}");
-    print("$time ['time']}");
+class WildFire extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => SplashScreen(),
+          '/OnBoarding': (context) => OnBoarding(),
+          '/Dashboard': (context) => Dashboard(),
+          '/Holder': (context) => Holder(),
+        },
+      ),
+      designSize: const Size(375, 667),
+    );
   }
 }
-
-Query<Map<String, dynamic>> query =
-    FirebaseFirestore.instance.collection("fire-updates");
-final Stream<QuerySnapshot<Map<String, dynamic>>> snapshots = query.snapshots();
-
-// void createData() {
-//   FirebaseFirestore.instance.collection('fire-updates').doc().set({
-//     'name': 'John Doe',
-//     'phone-number': '2060000000',
-//     'location': 'Northwest',
-//     'detail': 'Raging wildfire off I-90',
-//     'time': '2:06PM'
-//   });
-//   FirebaseFirestore.instance.collection('fire-updates').doc().set({
-//     'name': 'Jane Doe',
-//     'phone-number': '2130000000',
-//     'location': 'California',
-//     'detail': 'Wildfire caused by campfire.',
-//     'time': '2:13PM'
-//   });
-// }
-
-// void updateData() {
-//   FirebaseFirestore.instance.collection('fire-updates').doc().update({
-//     'detail': 'Raging wildfire off I-90. Notifiied authorities. DNR responded.'
-//   });
-// }
-
-// void deleteData() {
-//   FirebaseFirestore.instance.collection('fire-updates').doc().delete();
-// }
