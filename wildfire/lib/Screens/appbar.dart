@@ -30,7 +30,7 @@ class FirstPage extends StatelessWidget {
                     (route) => false);
               },
               icon: Icon(
-                Icons.fire_extinguisher,
+                Icons.fire_extinguisher_rounded,
                 color: Colors.yellow.shade800,
               ),
             ),
