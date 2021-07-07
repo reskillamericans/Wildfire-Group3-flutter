@@ -53,9 +53,9 @@ class _OnBoardingState extends State<OnBoarding> {
               padding: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
                 onPressed: () {
-                  if (currentIndex == slide.length - 1) {
-                    Navigator.pushNamed(context, '/Dashboard');
-                  }
+                  if (currentIndex == slide.length - 1)
+                    () => Navigator.pushNamed(context, '/LogingScreen');
+
                   controller.nextPage(
                       duration: Duration(microseconds: 100),
                       curve: Curves.bounceIn);

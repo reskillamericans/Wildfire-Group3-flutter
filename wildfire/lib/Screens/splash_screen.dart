@@ -3,8 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wildfire/Screens/Auth_screens/login.dart';
-import 'appbar.dart';
+// import 'package:wildfire/Screens/Auth_screens/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -30,20 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
         Duration(
           seconds: 3,
         ), () {
-      if (auth.currentUser != null) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LoginScreen(),
-            ),
-            (route) => false);
+      if (auth.currentUser == null) {
+        Navigator.pushNamed(context, '/LoginScreen');
       } else {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FirstPage(),
-            ),
-            (route) => false);
+        Navigator.pushNamed(context, '/OnBoarding');
       }
     });
 

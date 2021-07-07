@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wildfire/Provider/Auth_provider.dart';
-import 'package:wildfire/Screens/Auth_screens/login.dart';
 
 class ResetScreen extends StatefulWidget {
   @override
@@ -39,12 +38,7 @@ class _ResetScreenState extends State<ResetScreen> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginScreen(),
-                ),
-              );
+              Navigator.pushNamed(context, '/LoginScreen');
             },
             icon: Icon(Icons.login_sharp),
             color: Colors.black,
@@ -111,13 +105,8 @@ class _ResetScreenState extends State<ResetScreen> {
                         setState(() {
                           isLoading = false;
                         });
-                        if (value == "Reset Code Sent to Email You Provided") {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                              (route) => false);
+                        if (value == 'Email Sent to Email You Provided') {
+                          Navigator.pushNamed(context, '/LoginScreen');
                         } else {
                           setState(() {
                             isLoading = false;

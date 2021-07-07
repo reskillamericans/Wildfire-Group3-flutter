@@ -10,10 +10,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     var _padding = EdgeInsets.symmetric(vertical: 1, horizontal: 1);
@@ -60,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: _color,
                     ),
                     child: TextField(
-                      controller: _usernameController,
+                      controller: _userNameController,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -118,20 +117,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
                         AuthProvider()
                             .signIn(
-                          email: _usernameController.text.trim(),
+                          email: _userNameController.text.trim(),
                           password: _passwordController.text.trim(),
                         )
                             .then((value) {
                           setState(() {
                             isLoading = false;
                           });
-                          if (value == "Welcome To Wildfire Home") {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => FirstPage(),
-                                ),
-                                (route) => false);
+                          if (value == 'Welcome To Wildfire Home') {
+                            Navigator.pushNamed(context, '/Dashboard');
                           } else {
                             setState(() {
                               isLoading = false;

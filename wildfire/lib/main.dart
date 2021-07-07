@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wildfire/Screens/Auth_screens/Register.dart';
+import 'package:wildfire/Screens/Auth_screens/login.dart';
+import 'package:wildfire/Screens/Auth_screens/reset.dart';
 import 'package:wildfire/Screens/Dashboard/blankpage.dart';
 import 'package:wildfire/Screens/Dashboard/dashcontainers.dart';
 import 'package:wildfire/Screens/intro/on_boarding.dart';
@@ -20,10 +23,13 @@ class WildFire extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MyHomePage(),
-          '/OnsplashScreen': (context) => SplashScreen(),
+          '/SplashScreen': (context) => SplashScreen(),
           '/OnBoarding': (context) => OnBoarding(),
           '/Dashboard': (context) => Dashboard(),
           '/Holder': (context) => Holder(),
+          '/LoginScreen': (context) => LoginScreen(),
+          '/SignUpScreen': (context) => SignUpScreen(),
+          '/ResetScreen': (context) => ResetScreen(),
         },
       ),
       designSize: const Size(375, 667),

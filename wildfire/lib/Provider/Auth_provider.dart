@@ -11,7 +11,7 @@ class AuthProvider {
         email: email,
         password: password,
       );
-      return ('Account Created Successfully');
+      return 'Account Created Successfully';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return ('The password provided is too weak.');
