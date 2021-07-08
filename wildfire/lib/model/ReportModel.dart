@@ -1,50 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class GetReport {
-  String name, phoneNumber, location, detail, time;
-
+class Report {
   CollectionReference fireUpdate =
       FirebaseFirestore.instance.collection('fire-updates');
 
-  GetReport(
-      {required this.name,
-      required this.phoneNumber,
-      required this.location,
-      required this.detail,
-      required this.time});
+  late final String _name, _phoneNumber, _location, _detail, _time;
 
-  void setName(String getName) {
-    name = getName;
-  }
+  String get name => _name;
 
-  void setPhoneNumber(String getphoneNumber) {
-    phoneNumber = getphoneNumber;
-  }
+  String get phoneNumber => _phoneNumber;
 
-  void setLocation(String getlocation) {
-    location = getlocation;
-  }
+  String get location => _location;
 
-  void setDetail(String getdetail) {
-    detail = getdetail;
-  }
+  String get detail => _detail;
 
-  void setTime(String gettime) {
-    time = gettime;
-  }
+  String get time => _time;
 
-  GetReport.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        phoneNumber = json['phone-number'],
-        location = json['location'],
-        detail = json['detail'],
-        time = json['time'];
+  Report.fromJson(Map<String, dynamic> json)
+    : _name = json['name'],
+      _phoneNumber = json['phone-number'],
+      _location = json['location'],
+      _detail = json['detail'],
+      _time = json['time'];
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'phone-number': phoneNumber,
-        'location': location,
-        'detail': detail,
-        'time': time,
+        'name': _name,
+        'phone-number': _phoneNumber,
+        'location': _location,
+        'detail': _detail,
+        'time': _time,
       };
+
+
 }
