@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class Report {
-  CollectionReference fireUpdate =
-      FirebaseFirestore.instance.collection('fire-updates');
 
   late final String _name, _phoneNumber, _location, _detail, _time;
 
