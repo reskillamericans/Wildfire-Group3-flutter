@@ -8,7 +8,6 @@ import 'package:wildfire/Screens/intro/on_boarding.dart';
 import 'package:wildfire/Screens/splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,11 +24,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final fireUpdate= FirebaseFirestore.instance
-      .collection('fire-updates');
+  final fireUpdate = FirebaseFirestore.instance.collection('fire-updates');
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -38,16 +35,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-          StreamBuilder<QuerySnapshot>(
-            stream: fireUpdate.snapshots(),
-            builder: (context,snapshots){
-              snapshots.data?.docs.forEach((element) {
-                print("update ${element.data()}");
-              });
+            StreamBuilder<QuerySnapshot>(
+              stream: fireUpdate.snapshots(),
+              builder: (context, snapshots) {
+                snapshots.data?.docs.forEach((element) {
+                  print("update ${element.data()}");
+                });
 
-              return Container();
-            },
-          )
+                return Container();
+              },
+            )
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
