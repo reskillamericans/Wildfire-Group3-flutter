@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  // FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -25,17 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        Duration(
-          seconds: 3,
-        ), () {
-      if (auth.currentUser == null) {
-        Navigator.pushNamed(context, '/LoginScreen');
-      } else {
-        Navigator.pushNamed(context, '/OnBoarding');
-      }
-    });
-
     return ScreenUtilInit(
       builder: () => MaterialApp(
         home: Scaffold(

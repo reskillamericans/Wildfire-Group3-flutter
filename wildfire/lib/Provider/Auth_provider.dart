@@ -11,15 +11,15 @@ class AuthProvider {
         email: email,
         password: password,
       );
-      return 'Account Created Successfully';
+      return 'Account created';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return ('The password provided is too weak.');
+        print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        return ('The account already exists for that email.');
+        print('The account already exists for that email.');
       }
     } catch (e) {
-      return ("Eror Occurred, Try Again");
+      return 'Error occured, please try again';
     }
     return '';
   }
@@ -32,7 +32,7 @@ class AuthProvider {
         email: email,
         password: password,
       );
-      return 'Welcome To Wildfire Home';
+      return 'Wildfire Home';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return 'No user found for that email.';

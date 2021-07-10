@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,7 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
+  FirebaseAuth auth = FirebaseAuth.instance;
   late PageController controller;
   int currentIndex = 0;
 
@@ -31,6 +33,17 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+        Duration(
+          seconds: 3,
+        ), () {
+      if (auth.currentUser != null) {
+        Navigator.pushNamed(context, '/LoginScreen');
+      } else {
+        Navigator.pushNamed(context, '/OnBoarding');
+      }
+    });
+
     return ScreenUtilInit(
       builder: () => Scaffold(
         body: Column(children: [

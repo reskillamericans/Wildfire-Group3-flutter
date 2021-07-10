@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wildfire/Provider/Auth_provider.dart';
-import 'package:wildfire/Screens/Auth_screens/Register.dart';
-import 'package:wildfire/Screens/Auth_screens/reset.dart';
-import 'package:wildfire/Screens/appbar.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -34,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: isLoading == false
+      body: !isLoading
           ? Padding(
               padding: EdgeInsets.symmetric(vertical: 100, horizontal: 5),
               child: ListView(
@@ -124,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() {
                             isLoading = false;
                           });
-                          if (value == 'Welcome To Wildfire Home') {
+                          if (value == 'Wildfire Home') {
                             Navigator.pushNamed(context, '/Dashboard');
                           } else {
                             setState(() {
@@ -166,12 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                     ),
                     child: MaterialButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => FirstPage()),
-                        );
-                      },
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/OnBoarding'),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
@@ -209,14 +202,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               return Colors.black;
                             }),
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUpScreen(),
-                              ),
-                            );
-                          },
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/SignUpScreen'),
                           child: Text(
                             "Sign Up",
                             style: TextStyle(
@@ -252,14 +239,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               return Colors.black;
                             }),
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ResetScreen(),
-                              ),
-                            );
-                          },
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/ResetScreen'),
                           child: Text(
                             "Reset",
                             style: TextStyle(

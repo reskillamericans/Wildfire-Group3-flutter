@@ -28,10 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-            icon: Icon(Icons.menu, color: Colors.black),
-            onPressed: () {
-              Drawer();
-            }),
+            icon: Icon(Icons.menu, color: Colors.black), onPressed: () {}),
         title: Text(
           "Sign Up",
           style: TextStyle(color: Colors.black),
@@ -44,6 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width / 1,
+                    // height: MediaQuery.of(context).size.width / 1,
                     alignment: Alignment(-1.0, 0.0),
                     padding: EdgeInsets.all(8),
                     margin: _margin2,
@@ -56,6 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                     padding: _padding,
                     margin: _margin,
+                    // height: 45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.0),
                       color: _color,
@@ -183,8 +182,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           setState(() {
                             isLoading = false;
                           });
-                          if (value == 'Account Created Successfully') {
-                            Navigator.pushNamed((context), '/LoginScreen');
+                          if (value == 'Account created') {
+                            Navigator.pushNamed(context, '/LoginScreen');
                           } else {
                             setState(() {
                               isLoading = false;
@@ -225,9 +224,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       )),
                     ),
                     child: MaterialButton(
-                      onPressed: () {
-                        Navigator.pushNamed((context), '/OnBoarding');
-                      },
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/OnBoarding'),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
@@ -265,9 +263,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return Colors.black;
                             }),
                           ),
-                          onPressed: () {
-                            Navigator.pushNamed((context), '/LoginScreen');
-                          },
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/LoginScreen'),
                           child: Text(
                             "Login",
                             style: TextStyle(
@@ -303,9 +300,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return Colors.black;
                             }),
                           ),
-                          onPressed: () {
-                            Navigator.pushNamed((context), '/ResetScreen');
-                          },
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/LoginScreen'),
                           child: Text(
                             "Reset",
                             style: TextStyle(
