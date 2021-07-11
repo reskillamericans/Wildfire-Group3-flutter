@@ -226,7 +226,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     child: MaterialButton(
                       onPressed: () =>
-                          Navigator.pushNamed(context, '/OnBoarding'),
+                          Navigator.pushNamed(context, '/Dashboard'),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(

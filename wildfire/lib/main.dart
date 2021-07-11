@@ -11,6 +11,7 @@ import 'Screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(WildFire());
 }
 
@@ -23,8 +24,7 @@ class WildFire extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => MyHomePage(),
-          '/SplashScreen': (context) => SplashScreen(),
+          '/': (context) => SplashScreen(),
           '/OnBoarding': (context) => OnBoarding(),
           '/Dashboard': (context) => Dashboard(),
           '/Holder': (context) => Holder(),
@@ -38,34 +38,3 @@ class WildFire extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      // Initialize FlutterFire:
-      future: _initialization,
-      builder: (context, snapshot) {
-        // Check for errors
-        if (snapshot.hasError) {
-          return Container();
-        }
-        // Once complete, show your application
-        if (snapshot.connectionState == ConnectionState.done) {
-          return SplashScreen();
-        }
-
-        // Otherwise, show something whilst waiting for initialization to complete
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-  }
-}
