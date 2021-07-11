@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:wildfire/Provider/Auth_provider.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:wildfire/Provider/auth_provider.dart';
 
-class SignUpScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     var _padding = EdgeInsets.symmetric(vertical: 1, horizontal: 1);
@@ -21,22 +19,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
     var _alignment = Alignment(-1.0, 0.0);
     var _padding2 = EdgeInsets.all(8);
     var _margin2 = EdgeInsets.only(top: 17);
-    var _margin3 = EdgeInsets.fromLTRB(100, 0, 100, 5);
+    var _margin3 = EdgeInsets.fromLTRB(100, 50, 100, 5);
     var _margin4 = EdgeInsets.fromLTRB(100, 0, 100, 0);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-            icon: Icon(Icons.menu, color: Colors.black), onPressed: () {}),
+            icon: SvgPicture.asset('assets/logos.svg'), onPressed: () {}),
         title: Text(
-          "Sign Up",
+          "Login",
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: isLoading == false
+      body: !isLoading
           ? Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+              padding: EdgeInsets.symmetric(vertical: 100, horizontal: 5),
               child: ListView(
                 children: <Widget>[
                   Container(
@@ -44,66 +42,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     // height: MediaQuery.of(context).size.width / 1,
                     alignment: Alignment(-1.0, 0.0),
                     padding: EdgeInsets.all(8),
-                    margin: _margin2,
                     child: Text(
-                      'Full Name',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    padding: _padding,
-                    margin: _margin,
-                    // height: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      color: _color,
-                    ),
-                    child: TextField(
-                      controller: _usernameController,
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                      ),
-                      keyboardType: TextInputType.name,
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  Container(
-                      alignment: _alignment,
-                      padding: _padding2,
-                      margin: _margin2,
-                      child: Text(
-                        'Phone Number',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      )),
-                  Container(
-                    padding: _padding,
-                    margin: _margin,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      color: _color,
-                    ),
-                    child: TextField(
-                      controller: _phoneController,
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                      ),
-                      keyboardType: TextInputType.phone,
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 1,
-                    alignment: Alignment(-1.0, 0.0),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      'Email',
+                      'Username/Email',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
@@ -117,13 +57,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       color: _color,
                     ),
                     child: TextField(
-                      controller: _emailController,
+                      controller: _userNameController,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                       ),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.name,
                       textAlign: TextAlign.start,
                     ),
                   ),
@@ -174,16 +114,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           isLoading = true;
                         });
                         AuthProvider()
-                            .regitration(
-                          email: _emailController.text.trim(),
+                            .signIn(
+                          email: _userNameController.text.trim(),
                           password: _passwordController.text.trim(),
                         )
                             .then((value) {
                           setState(() {
                             isLoading = false;
                           });
-                          if (value == 'Account created') {
-                            Navigator.pushNamed(context, '/LoginScreen');
+                          if (value == 'Wildfire Home') {
+                            Navigator.pushNamed(context, '/Dashboard');
                           } else {
                             setState(() {
                               isLoading = false;
@@ -200,7 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child: Text(
-                            'Sign Up',
+                            'Login',
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
@@ -225,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     child: MaterialButton(
                       onPressed: () =>
-                          Navigator.pushNamed(context, '/OnBoarding'),
+                          Navigator.pushNamed(context, '/Dashboard'),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
@@ -244,7 +184,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Have an account already?',
+                          'Don\'t have an account?',
                           style: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         ),
@@ -264,9 +204,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }),
                           ),
                           onPressed: () =>
-                              Navigator.pushNamed(context, '/LoginScreen'),
+                              Navigator.pushNamed(context, '/SignUpScreen'),
                           child: Text(
-                            "Login",
+                            "Sign Up",
                             style: TextStyle(
                                 color: Colors.yellow.shade800,
                                 fontWeight: FontWeight.bold),
@@ -301,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }),
                           ),
                           onPressed: () =>
-                              Navigator.pushNamed(context, '/LoginScreen'),
+                              Navigator.pushNamed(context, '/ResetScreen'),
                           child: Text(
                             "Reset",
                             style: TextStyle(

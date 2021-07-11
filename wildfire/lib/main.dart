@@ -7,6 +7,7 @@ import 'package:wildfire/Screens/Auth_screens/reset.dart';
 import 'package:wildfire/Screens/Dashboard/blankpage.dart';
 import 'package:wildfire/Screens/Dashboard/dashcontainers.dart';
 import 'package:wildfire/Screens/intro/on_boarding.dart';
+import 'Screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:wildfire/Provider/Auth_provider.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:wildfire/Provider/auth_provider.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _userNameController = TextEditingController();
+class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var _padding = EdgeInsets.symmetric(vertical: 1, horizontal: 1);
@@ -18,22 +22,22 @@ class _LoginScreenState extends State<LoginScreen> {
     var _alignment = Alignment(-1.0, 0.0);
     var _padding2 = EdgeInsets.all(8);
     var _margin2 = EdgeInsets.only(top: 17);
-    var _margin3 = EdgeInsets.fromLTRB(100, 50, 100, 5);
+    var _margin3 = EdgeInsets.fromLTRB(100, 0, 100, 5);
     var _margin4 = EdgeInsets.fromLTRB(100, 0, 100, 0);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-            icon: Icon(Icons.menu, color: Colors.black), onPressed: () {}),
+            icon: SvgPicture.asset('assets/logos.svg'), onPressed: () {}),
         title: Text(
-          "Login",
+          "Sign Up",
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: !isLoading
+      body: isLoading == false
           ? Padding(
-              padding: EdgeInsets.symmetric(vertical: 100, horizontal: 5),
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
               child: ListView(
                 children: <Widget>[
                   Container(
@@ -41,8 +45,66 @@ class _LoginScreenState extends State<LoginScreen> {
                     // height: MediaQuery.of(context).size.width / 1,
                     alignment: Alignment(-1.0, 0.0),
                     padding: EdgeInsets.all(8),
+                    margin: _margin2,
                     child: Text(
-                      'Username/Email',
+                      'Full Name',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    padding: _padding,
+                    margin: _margin,
+                    // height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: _color,
+                    ),
+                    child: TextField(
+                      controller: _usernameController,
+                      cursorColor: Colors.black,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                      ),
+                      keyboardType: TextInputType.name,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  Container(
+                      alignment: _alignment,
+                      padding: _padding2,
+                      margin: _margin2,
+                      child: Text(
+                        'Phone Number',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      )),
+                  Container(
+                    padding: _padding,
+                    margin: _margin,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: _color,
+                    ),
+                    child: TextField(
+                      controller: _phoneController,
+                      cursorColor: Colors.black,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                      ),
+                      keyboardType: TextInputType.phone,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1,
+                    alignment: Alignment(-1.0, 0.0),
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      'Email',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
@@ -56,13 +118,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: _color,
                     ),
                     child: TextField(
-                      controller: _userNameController,
+                      controller: _emailController,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                       ),
-                      keyboardType: TextInputType.name,
+                      keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.start,
                     ),
                   ),
@@ -113,16 +175,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           isLoading = true;
                         });
                         AuthProvider()
-                            .signIn(
-                          email: _userNameController.text.trim(),
+                            .regitration(
+                          email: _emailController.text.trim(),
                           password: _passwordController.text.trim(),
                         )
                             .then((value) {
                           setState(() {
                             isLoading = false;
                           });
-                          if (value == 'Wildfire Home') {
-                            Navigator.pushNamed(context, '/Dashboard');
+                          if (value == 'Account created') {
+                            Navigator.pushNamed(context, '/LoginScreen');
                           } else {
                             setState(() {
                               isLoading = false;
@@ -139,7 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child: Text(
-                            'Login',
+                            'Sign Up',
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
@@ -183,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Don\'t have an account?',
+                          'Have an account already?',
                           style: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         ),
@@ -203,9 +265,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             }),
                           ),
                           onPressed: () =>
-                              Navigator.pushNamed(context, '/SignUpScreen'),
+                              Navigator.pushNamed(context, '/LoginScreen'),
                           child: Text(
-                            "Sign Up",
+                            "Login",
                             style: TextStyle(
                                 color: Colors.yellow.shade800,
                                 fontWeight: FontWeight.bold),
@@ -240,7 +302,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             }),
                           ),
                           onPressed: () =>
-                              Navigator.pushNamed(context, '/ResetScreen'),
+                              Navigator.pushNamed(context, '/LoginScreen'),
                           child: Text(
                             "Reset",
                             style: TextStyle(

@@ -33,16 +33,6 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        Duration(
-          seconds: 3,
-        ), () {
-      if (auth.currentUser != null) {
-        Navigator.pushNamed(context, '/LoginScreen');
-      } else {
-        Navigator.pushNamed(context, '/OnBoarding');
-      }
-    });
 
     return ScreenUtilInit(
       builder: () => Scaffold(
@@ -66,9 +56,9 @@ class _OnBoardingState extends State<OnBoarding> {
               padding: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
                 onPressed: () {
-                  if (currentIndex == slide.length - 1)
-                    () => Navigator.pushNamed(context, '/LogingScreen');
-
+                  if (currentIndex == slide.length - 1) {
+                    Navigator.pushNamed(context, '/LoginScreen');
+                  }
                   controller.nextPage(
                       duration: Duration(microseconds: 100),
                       curve: Curves.bounceIn);

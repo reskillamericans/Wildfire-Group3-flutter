@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wildfire/Provider/Auth_provider.dart';
+import 'package:wildfire/Provider/auth_provider.dart';
 
 class ResetScreen extends StatefulWidget {
   @override
