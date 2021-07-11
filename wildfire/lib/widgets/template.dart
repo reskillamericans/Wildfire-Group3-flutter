@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wildfire/model/model.dart';
 
 class Template extends StatelessWidget {
-  String image, title, description;
-  int currentIndex;
+  final String image;
+  final String title;
+  final String description;
+  final int currentIndex;
 
   Template(
       {required this.image,
