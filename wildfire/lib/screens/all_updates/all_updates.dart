@@ -169,23 +169,25 @@ class _AllUpdatesState extends State<AllUpdates> {
                               stream: FirebaseFirestore.instance
                                   .collection('fire-updates')
                                   .snapshots(),
-                              builder: (context, snapshot) {
-                                if (!snapshot.hasData) {
+                              builder: (BuildContext,
+                                  AsyncSnapshot<QuerySnapshot> querySnapshot) {
+                                if (querySnapshot.hasData) {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 } else
-                                  return ListView(
-                                    children: snapshot.data!.docs.map((doc) {
+                                  return ListView.builder(
+                                      itemBuilder: (context, index) {
+                                    querySnapshot.data!.docs.map((doc) {
                                       return Card(
-                                          child: ListTile(
-                                              leading: Text(doc.data()['location']),
-                                              title: Text(doc.data()['detail'],
-                                              subtitle: Text(doc.data()!['title'],
-                                                ),
-                                              )));
-                                    }).toList(),
-                                  );
+                                        child: ListTile(
+                                          leading: Text(doc.data()['location']),
+                                          title: Text(doc.data()['detail']),
+                                          subtitle: Text(doc.data()['title']),
+                                        ),
+                                      );
+                                    });
+                                  });
                               })
                         ],
                       ),
