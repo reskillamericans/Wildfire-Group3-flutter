@@ -178,12 +178,15 @@ class _AllUpdatesState extends State<AllUpdates> {
                                 } else
                                   return ListView.builder(
                                       itemBuilder: (context, index) {
-                                    querySnapshot.data!.docs.map((doc) {
-                                      return Card(
-                                        child: ListTile(
-                                          leading: Text(doc.data()['location']),
-                                          title: Text(doc.data()['detail']),
-                                          subtitle: Text(doc.data()['title']),
+                                    querySnapshot.data!.docs
+                                        .map((DocumentSnapshot) {
+                                      return Container(
+                                        width: 343.w,
+                                        height: 240.h,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(24.r),
+                                          color: Color(0xffebebeb),
                                         ),
                                       );
                                     });
