@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wildfire/model/report_model.dart';
 
@@ -19,27 +18,6 @@ class _AllUpdatesState extends State<AllUpdates> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 49.h,
-        backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'Updates',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14.sp,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 65.0),
-              child: SvgPicture.asset('assets/logos.svg'),
-            ),
-          ],
-        ),
-        iconTheme: IconThemeData(color: Colors.black),
-      ),
       drawer: Drawer(
         child: Material(
           child: ListView(
@@ -71,114 +49,88 @@ class _AllUpdatesState extends State<AllUpdates> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          StreamBuilder<QuerySnapshot>(
-                              stream: _reportStream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.hasError) {
-                                  return Text('Oops..Something went wrong');
-                                }
-
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return CircularProgressIndicator();
-                                }
-                                return ListView.builder(
-                                    itemBuilder: (context, index) {
-                                  snapshot.data!.docs
-                                      .map((DocumentSnapshot document) {
-                                    Report as Map<String, dynamic>;
-                                    return Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 30.h,
-                                        ),
-                                        SizedBox(
-                                          width: 343.w,
-                                          height: 21.h,
-                                        ),
-                                        SizedBox(height: 8.h),
-                                        Container(
-                                          width: 343.w,
-                                          height: 65.h,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(24.r),
-                                            color: Color.fromRGBO(
-                                                236, 236, 236, 1),
+                      Flexible(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            StreamBuilder<QuerySnapshot>(
+                                stream: _reportStream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Text('Oops..Something went wrong');
+                                  }
+                      
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return CircularProgressIndicator();
+                                  }
+                                  return ListView.builder(
+                                      itemBuilder: (context, index) {
+                                    snapshot.data!.docs
+                                        .map((DocumentSnapshot document) {
+                                      Report as Map<String, dynamic>;
+                                      return Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 30.h,
                                           ),
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 16.w,
+                                          SizedBox(
+                                            width: 343.w,
+                                            height: 21.h,
                                           ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                child: Icon(
-                                                  Icons.location_on_outlined,
-                                                  size: 12.r,
-                                                  color: Color.fromRGBO(
-                                                      121, 116, 116, 1),
+                                          SizedBox(height: 8.h),
+                                          Container(
+                                            width: 343.w,
+                                            height: 65.h,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(24.r),
+                                              color: Color.fromRGBO(
+                                                  236, 236, 236, 1),
+                                            ),
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: 16.w,
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  child: Icon(
+                                                    Icons.location_on_outlined,
+                                                    size: 12.r,
+                                                    color: Color.fromRGBO(
+                                                        121, 116, 116, 1),
+                                                  ),
                                                 ),
-                                              ),
-                                              Container(
-                                                  width: 136.w,
-                                                  height: 140.h,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24.r),
-                                                  )),
-                                            ],
+                                                Container(
+                                                    width: 136.w,
+                                                    height: 140.h,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.r),
+                                                    )),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      );
+                                    });
+                                    return Center(
+                                      child: CircularProgressIndicator(),
                                     );
                                   });
-                                  return Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                });
-                              })
-                        ],
+                                })
+                          ],
+                        ),
                       ),
-                      // Column(
-                      //   children: [
-                      //     SizedBox(
-                      //       height: 300.h,
-                      //     ),
-                      //     SizedBox(
-                      //       width: 343.w,
-                      //       height: 21.h,
-                      //     ),
-                      //     SizedBox(height: 8.h),
-                      //     Container(
-                      //       width: 343.w,
-                      //       height: 165.h,
-                      //       decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(24.r),
-                      //         color: Color.fromRGBO(236, 236, 236, 1),
-                      //       ),
-                      //       padding: EdgeInsets.symmetric(
-                      //         horizontal: 16.w,
-                      //       ),
-                      //       child: Row(
-                      //         mainAxisSize: MainAxisSize.min,
-                      //         mainAxisAlignment: MainAxisAlignment.end,
-                      //         crossAxisAlignment: CrossAxisAlignment.center,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
                     ],
                   ),
                 ),
@@ -186,7 +138,7 @@ class _AllUpdatesState extends State<AllUpdates> {
             )
           ])),
         ),
-      ),
+      )
     );
   }
 }
