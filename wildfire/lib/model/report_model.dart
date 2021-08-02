@@ -1,5 +1,3 @@
-
-
 class Report {
 
   late final String _name, _phoneNumber, _location, _detail, _time;
@@ -14,7 +12,8 @@ class Report {
 
   String get time => _time;
 
-  Report.fromJson(Map<String, dynamic> json)
+
+ Report.fromJson(Map<String, dynamic> json)
     : _name = json['name'],
       _phoneNumber = json['phone-number'],
       _location = json['location'],
