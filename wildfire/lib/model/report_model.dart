@@ -1,6 +1,8 @@
-class Report {
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-  late final String _name, _phoneNumber, _location, _detail, _time;
+class Report {
+  late final String _name, _phoneNumber, _location, _detail;
+  Timestamp _time;
 
   String get name => _name;
 
@@ -10,15 +12,14 @@ class Report {
 
   String get detail => _detail;
 
-  String get time => _time;
+  Timestamp get time => _time;
 
-
- Report.fromJson(Map<String, dynamic> json)
-    : _name = json['name'],
-      _phoneNumber = json['phone-number'],
-      _location = json['location'],
-      _detail = json['detail'],
-      _time = json['time'];
+  Report.fromJson(DocumentSnapshot data)
+      : _name = data['name'],
+        _phoneNumber = data['phone-number'],
+        _location = data['location'],
+        _detail = data['detail'],
+        _time = data['time'];
 
   Map<String, dynamic> toJson() => {
         'name': _name,
@@ -28,5 +29,8 @@ class Report {
         'time': _time,
       };
 
-
+  @override
+  String toString() {
+    return 'Report{_name: $_name, _phoneNumber: $_phoneNumber, _location: $_location, _detail: $_detail,  _time: $_time';
+  }
 }
