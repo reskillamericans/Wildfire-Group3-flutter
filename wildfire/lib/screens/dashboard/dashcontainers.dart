@@ -25,36 +25,37 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      builder: () => Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 49.h,
-          backgroundColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                'Home',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18.sp,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 65.0),
-                child: SvgPicture.asset('assets/logos.svg'),
-              ),
-            ],
-          ),
-          iconTheme: IconThemeData(color: Colors.black),
-        ),
-        drawer: Drawer(
-          child: Material(
-            child: ListView(
-              children: <Widget>[],
-            ),
-          ),
-        ),
+    return //ScreenUtilInit(
+      //builder: () => 
+      new Scaffold(
+        // appBar: AppBar(
+        //   toolbarHeight: 49.h,
+        //   backgroundColor: Colors.white,
+        //   title: Row(
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     children: [
+        //       Text(
+        //         'Home',
+        //         style: TextStyle(
+        //           color: Colors.black,
+        //           fontSize: 18.sp,
+        //         ),
+        //       ),
+        //       Padding(
+        //         padding: const EdgeInsets.only(left: 65.0),
+        //         child: SvgPicture.asset('assets/logos.svg'),
+        //       ),
+        //     ],
+        //   ),
+        //   iconTheme: IconThemeData(color: Colors.black),
+        // ),
+        // drawer: Drawer(
+        //   child: Material(
+        //     child: ListView(
+        //       children: <Widget>[],
+        //     ),
+        //   ),
+        // ),
         body: _navigation.elementAt(_currentIndex),
         floatingActionButton: FloatingActionButton(
           child: Image(image: AssetImage('assets/firebutton.png')),
@@ -97,9 +98,9 @@ class _DashboardState extends State<Dashboard> {
             });
           },
         ),
-      ),
-      designSize: Size(375, 667),
-    );
+      );
+      // designSize: Size(375, 667);
+    
   }
 }
 
