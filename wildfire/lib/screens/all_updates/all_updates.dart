@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wildfire/model/report_model.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class AllUpdates extends StatefulWidget {
   const AllUpdates({Key? key}) : super(key: key);
@@ -58,54 +59,83 @@ class _AllUpdatesState extends State<AllUpdates> {
                         itemCount: updates?.length,
                         itemBuilder: (context, index) {
                           print(updates.toString());
-                          return Column(
-                              mainAxisSize: MainAxisSize.min,
+                          return Container(
+                            child: Column(
                               children: [
-                                Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      width: 343,
-                                      height: 162,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFECECEC),
-                                        borderRadius: BorderRadius.circular(24),
-                                        shape: BoxShape.rectangle,
+                                SizedBox(
+                                  height: 16.h,
+                                ),
+                                SizedBox(height: 8.h),
+                                Container(
+                                  width: 343.w,
+                                  height: 240.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(24.r),
+                                    color: Color(0xffebebeb),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Container(
+                                                child: Icon(
+                                                  Icons.location_on_outlined,
+                                                  size: 12.r,
+                                                  color: Color.fromRGBO(
+                                                      121, 116, 116, 1),
+                                                ),
+                                              ),
+                                            ),
+                                            Text(updates![index].location),
+                                            SizedBox(width: 5.w),
+                                            Container(
+                                              width: 3.w,
+                                              height: 3.h,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color(0xff797474),
+                                              ),
+                                            ),
+                                            SizedBox(width: 5.w),
+                                            Text(
+                                              timeago.format(DateTime.now()
+                                                  .subtract(Duration(hours: 1))),
+                                            ),
+                                          ]),
+                                      SizedBox(height: 4.h),
+                                      Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: SizedBox(
+                                          width: 293.w,
+                                          height: 60.h,
+                                          child: Text(updates[index].detail),
+                                        ),
                                       ),
-                                      child: Align(
-                                          alignment: Alignment(0.2, 0.35),
-                                          child: Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  0, 10, 0, 0),
-                                              child: Expanded(
-                                                  child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Text(updates![index]
-                                                        .location),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Text(
-                                                        updates[index].name),
-                                                  ),
-                                                  Flexible(
-                                                      child: Text(updates[index]
-                                                          .detail)),
-                                                ],
-                                              )))),
-                                    ))
-                              ]);
+                                      Container(
+                                        width: 293.w,
+                                        height: 141.h,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(24.r),
+                                        ),
+                                        child: Image(
+                                          image:
+                                              AssetImage('assets/dashfire.png'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
                         });
                   }
                   return CircularProgressIndicator();
