@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
@@ -13,7 +14,36 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
+        child: Scaffold(
+      drawer: Drawer(
+        child: Material(
+          child: ListView(
+            children: <Widget>[],
+          ),
+        ),
+      ),
+      appBar: AppBar(
+        toolbarHeight: 49.h,
+        backgroundColor: Colors.white,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'Home',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.sp,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 65.0),
+              child: SvgPicture.asset('assets/logos.svg'),
+            ),
+          ],
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Container(
           child: Stack(
@@ -187,6 +217,6 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -47,43 +47,46 @@ class _AllUpdatesState extends State<AllUpdates> {
             ),
           ),
         ),
-        body: Container(
-            child: StreamBuilder<QuerySnapshot>(
-                stream: _reportStream,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var updates = snapshot.data?.docs
-                        .map((e) => Report.fromJson(e))
-                        .toList();
-                    return ListView.builder(
-                        itemCount: updates?.length,
-                        itemBuilder: (context, index) {
-                          print(updates.toString());
-                          return Container(
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                SizedBox(height: 8.h),
-                                Container(
-                                  width: 343.w,
-                                  height: 240.h,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(24.r),
-                                    color: Color(0xffebebeb),
-                                  ),
-                                  child: Column(
+        body: StreamBuilder<QuerySnapshot>(
+            stream: _reportStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var updates =
+                    snapshot.data?.docs.map((e) => Report.fromJson(e)).toList();
+                return ListView.builder(
+                    itemCount: updates?.length,
+                    itemBuilder: (context, index) {
+                      print(updates.toString());
+
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24.r),
+                            color: Color(0xffebebeb),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Row(
-                                          mainAxisSize: MainAxisSize.min,
+                                      Flexible(
+                                        child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0, top: 2.0),
                                               child: Container(
                                                 child: Icon(
                                                   Icons.location_on_outlined,
@@ -93,52 +96,60 @@ class _AllUpdatesState extends State<AllUpdates> {
                                                 ),
                                               ),
                                             ),
-                                            Text(updates![index].location),
-                                            SizedBox(width: 5.w),
-                                            Container(
-                                              width: 3.w,
-                                              height: 3.h,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Color(0xff797474),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0),
+                                              child: Text(
+                                                  updates![index].location),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Container(
+                                                width: 3.w,
+                                                height: 3.h,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Color(0xff797474),
+                                                ),
                                               ),
                                             ),
-                                            SizedBox(width: 5.w),
                                             Text(
-                                              timeago.format(DateTime.now()
-                                                  .subtract(Duration(hours: 1))),
+                                              timeago.format(
+                                                  updates[index].time.toDate()),
                                             ),
-                                          ]),
-                                      SizedBox(height: 4.h),
-                                      Padding(
-                                        padding: const EdgeInsets.all(3.0),
-                                        child: SizedBox(
-                                          width: 293.w,
-                                          height: 60.h,
-                                          child: Text(updates[index].detail),
+                                          ],
                                         ),
                                       ),
-                                      Container(
-                                        width: 293.w,
-                                        height: 141.h,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(24.r),
-                                        ),
-                                        child: Image(
-                                          image:
-                                              AssetImage('assets/dashfire.png'),
+                                      Flexible(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                              width: 200.w,
+                                              child:
+                                                  Text(updates[index].detail)),
                                         ),
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        });
-                  }
-                  return CircularProgressIndicator();
-                })));
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image(
+                                        height: 150.h,
+                                        fit: BoxFit.fill,
+                                        image:
+                                            AssetImage('assets/dashfire.png'),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      );
+                    });
+              }
+              return Center(child: CircularProgressIndicator());
+            }));
   }
 }
